@@ -7,8 +7,8 @@ Component({
       {
         pagePath: "/pages/index/index",
         text: "行情",
-        iconPath: "/assets/icons/market.png",
-        selectedIconPath: "/assets/icons/market-active.png"
+        iconPath: "/assets/icons/home.png",
+        selectedIconPath: "/assets/icons/home-active.png"
       },
       {
         pagePath: "/pages/gold/index",

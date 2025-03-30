@@ -3,9 +3,7 @@
   "pages": [
     "pages/index/index",
     "pages/gold/index",
-    "pages/add/index",
-    "pages/ledger/index",
-    "pages/profile/index"
+    "pages/add/index"
   ],
   "window": {
     "navigationStyle": "custom",
@@ -32,14 +30,6 @@
       {
         "pagePath": "pages/add/index",
         "text": ""
-      },
-      {
-        "pagePath": "pages/ledger/index",
-        "text": "记账"
-      },
-      {
-        "pagePath": "pages/profile/index",
-        "text": "我的"
       }
     ]
   },

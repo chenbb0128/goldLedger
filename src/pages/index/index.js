@@ -1,5 +1,4 @@
 import { hello } from '@/utils/util'
-import ActionSheet, { ActionSheetTheme } from 'tdesign-miniprogram/action-sheet/index'
 import * as echarts from '@/components/ec-canvas/echarts'
 
 const app = getApp()
@@ -30,9 +29,9 @@ const mockData = {
     }),
     prices: Array.from({length: 90}, (_, i) => {
       const basePrice = 600;
-      const trend = i / 2; // 整体上涨趋势
-      const fluctuation = Math.sin(i / 10) * 10; // 添加波动
-      const random = (Math.random() - 0.5) * 5; // 添加随机性
+      const trend = i / 2;
+      const fluctuation = Math.sin(i / 10) * 10;
+      const random = (Math.random() - 0.5) * 5;
       return Math.round((basePrice + trend + fluctuation + random) * 100) / 100;
     })
   }
@@ -88,7 +87,6 @@ function initChart(canvas, width, height, dpr) {
       },
       position: function (pos, params, el, elRect, size) {
         const xPos = pos[0];
-        // 根据点在图表中的位置决定提示框显示在左侧还是右侧
         if (xPos > size.viewSize[0] / 2) {
           return { left: xPos - 120, top: 10 };
         } else {
@@ -161,30 +159,7 @@ Page({
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
     Custom: app.globalData.Custom,
-    mode: 'light',
     goldPrice: '719.70',
-    newsList: [
-      {
-        id: 1,
-        title: '国际金价创新高，突破2100美元/盎司',
-        summary: '受全球经济不确定性影响，避险情绪推动金价持续上涨...',
-        time: '10分钟前',
-        image: 'https://example.com/news1.jpg'
-      },
-      {
-        id: 2,
-        title: '央行增持黄金储备，连续第12个月净买入',
-        summary: '数据显示，我国黄金储备规模持续扩大，显示对黄金的长期信心...',
-        time: '30分钟前'
-      },
-      {
-        id: 3,
-        title: '黄金回收市场活跃，二手金价格上涨',
-        summary: '随着金价上涨，黄金回收市场交易活跃，回收价格创近年新高...',
-        time: '1小时前',
-        image: 'https://example.com/news3.jpg'
-      }
-    ],
     timeRanges: [
       { label: '实时', value: 'realtime' },
       { label: '近一月', value: '1m' },
@@ -196,53 +171,12 @@ Page({
       forceUseOldCanvas: true
     }
   },
-  switchMode() {
-    if (this.data.mode === 'light') {
-      this.setData({
-        mode: 'dark',
-      })
-    }
-    else {
-      this.setData({
-        mode: 'light',
-      })
-    }
-  },
-  async copy(e) {
-    if (e.mark?.url) {
-      await wx.setClipboardData({
-        data: e.mark.url,
-      })
-      console.log(`复制成功: ${e.mark.url}`)
-    }
-  },
-  handleSelected(e) {
-    console.log(e.detail)
-  },
+
   onLoad() {
-    console.log(hello())
-    this.fetchGoldPrice()
-    this.fetchNews()
+    console.log(app.globalData)
     this.fetchTrendData()
   },
-  handleAction() {
-    ActionSheet.show({
-      theme: ActionSheetTheme.Grid,
-      selector: '#t-action-sheet',
-      context: this,
-      items: firstGrid,
-      align: 'center',
-      description: '',
-    })
-  },
-  // 获取黄金价格
-  fetchGoldPrice() {
-    // TODO: 实现黄金价格API调用
-  },
-  // 获取新闻资讯
-  fetchNews() {
-    // TODO: 实现新闻资讯API调用
-  },
+
   // 获取趋势数据
   fetchTrendData() {
     const chart = this.selectComponent('#gold-trend-chart')
@@ -256,12 +190,12 @@ Page({
           data: data.prices
         }]
       })
-      // 更新显示的金价为最新价格
       this.setData({
         goldPrice: data.prices[data.prices.length - 1].toFixed(2)
       })
     }
   },
+
   // 选择时间范围
   onRangeSelect(e) {
     const range = e.currentTarget.dataset.range
@@ -269,6 +203,7 @@ Page({
       this.fetchTrendData()
     })
   },
+
   // 订阅价格提醒
   onSubscribe() {
     wx.showModal({
@@ -276,7 +211,6 @@ Page({
       content: '是否订阅黄金价格变动提醒？',
       success: (res) => {
         if (res.confirm) {
-          // TODO: 实现订阅逻辑
           wx.showToast({
             title: '订阅成功',
             icon: 'success'
@@ -285,38 +219,12 @@ Page({
       }
     })
   },
-  // 搜索处理
-  onSearch(e) {
-    const keyword = e.detail.value
-    console.log('搜索关键词：', keyword)
-    // TODO: 实现搜索功能
-  },
-  // 查看更多新闻
-  onMoreNews() {
-    // TODO: 实现查看更多新闻功能
-  },
-  // 查看新闻详情
-  onNewsDetail(e) {
-    const { id } = e.currentTarget.dataset
-    // TODO: 跳转到新闻详情页
-  },
+
   onShow() {
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({
         selected: 0
       })
-    }
-  },
-  // 处理图标点击
-  onIconTap(e) {
-    const name = e.currentTarget.dataset.name
-    switch(name) {
-      case 'search':
-        // 处理搜索
-        break
-      case 'more':
-        // 处理更多
-        break
     }
   }
 })
