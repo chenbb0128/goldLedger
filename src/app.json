@@ -1,0 +1,50 @@
+{
+  "$schema": "https://vite.icebreaker.top/app.json",
+  "pages": [
+    "pages/index/index",
+    "pages/gold/index",
+    "pages/add/index",
+    "pages/ledger/index",
+    "pages/profile/index"
+  ],
+  "window": {
+    "navigationStyle": "custom",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#1A1A1A",
+    "navigationBarTitleText": "黄金记账",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#000000"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#7A7E83",
+    "selectedColor": "#FFD700",
+    "backgroundColor": "#1A1A1A",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "动态"
+      },
+      {
+        "pagePath": "pages/gold/index",
+        "text": "攒金"
+      },
+      {
+        "pagePath": "pages/add/index",
+        "text": ""
+      },
+      {
+        "pagePath": "pages/ledger/index",
+        "text": "记账"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "usingComponents": {}
+}

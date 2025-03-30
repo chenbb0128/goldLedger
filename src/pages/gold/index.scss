@@ -1,0 +1,23 @@
+/* 自定义样式 */
+.price-section {
+  background: linear-gradient(to bottom, rgba(255, 215, 0, 0.1), transparent);
+}
+
+.account-section {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+}
+
+/* TDesign组件样式覆盖 */
+.t-tabs {
+  --td-tab-nav-bg-color: transparent;
+  --td-tab-item-color: #999;
+  --td-tab-item-active-color: #FFD700;
+  --td-tab-track-color: #FFD700;
+}
+
+.t-button {
+  --td-button-primary-bg-color: #FFD700;
+  --td-button-primary-border-color: #FFD700;
+  --td-button-primary-color: #000;
+} 

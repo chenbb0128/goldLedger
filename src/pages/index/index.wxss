@@ -1,0 +1,70 @@
+/* 图表组件必需样式 */
+ec-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* 只保留图表相关的必要样式 */
+.chart-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.container {
+  background: linear-gradient(180deg, #000000 0%, #1a1a1a 100%);
+  min-height: 100vh;
+  padding: 20rpx;
+}
+
+.price-section {
+  text-align: center;
+  background: rgba(255, 215, 0, 0.1);
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin: 20rpx;
+  box-shadow: 0 4rpx 20rpx rgba(255, 215, 0, 0.2);
+}
+
+.price-display {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 10rpx 0;
+}
+
+.time-range {
+  margin: 20rpx 0;
+  padding: 0 20rpx;
+}
+
+.time-range-item {
+  padding: 12rpx 40rpx;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  color: #FFD700;
+  background: rgba(255, 215, 0, 0.1);
+  border: 2rpx solid rgba(255, 215, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.time-range-item.active {
+  background: #FFD700;
+  color: #000;
+  border-color: #FFD700;
+  box-shadow: 0 4rpx 12rpx rgba(255, 215, 0, 0.3);
+}
+
+.trend-chart {
+  width: 100%;
+  height: 800rpx;
+  margin-top: 20rpx;
+  padding: 0;
+}
+
+.flex-1 {
+  flex: 1;
+  height: 100%;
+  position: relative;
+} 

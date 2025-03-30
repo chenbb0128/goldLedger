@@ -1,0 +1,75 @@
+<view class="container bg-black min-h-screen text-white p-4">
+  <t-form>
+    <!-- 黄金重量 -->
+    <t-input
+      label="重量"
+      placeholder="请输入黄金重量"
+      suffix="克"
+      type="digit"
+      align="right"
+      value="{{weight}}"
+      bindchange="onWeightChange"
+    />
+    
+    <!-- 购买价格 -->
+    <t-input
+      label="单价"
+      placeholder="请输入购买单价"
+      suffix="元/克"
+      type="digit"
+      align="right"
+      value="{{price}}"
+      bindchange="onPriceChange"
+    />
+
+    <!-- 购买日期 -->
+    <t-cell
+      title="购买日期"
+      arrow
+      note="{{date}}"
+      bind:tap="showDatePicker"
+      hover
+    />
+
+    <!-- 备注 -->
+    <t-textarea
+      label="备注"
+      placeholder="请输入备注信息"
+      maxlength="200"
+      indicator
+      value="{{remark}}"
+      bindchange="onRemarkChange"
+    />
+
+    <!-- 总价展示 -->
+    <view class="mt-8 p-4 rounded-lg bg-gray-900">
+      <view class="flex justify-between items-center">
+        <text class="text-gray-400">总价</text>
+        <text class="text-2xl text-yellow-400">¥{{totalAmount}}</text>
+      </view>
+    </view>
+
+    <!-- 提交按钮 -->
+    <view class="mt-8">
+      <t-button 
+        theme="primary" 
+        size="large" 
+        block 
+        class="bg-yellow-400"
+        bindtap="handleSubmit"
+      >
+        确认添加
+      </t-button>
+    </view>
+  </t-form>
+
+  <!-- 日期选择器 -->
+  <t-date-picker
+    visible="{{dateVisible}}"
+    value="{{date}}"
+    mode="date"
+    title="选择日期"
+    bindconfirm="onDateConfirm"
+    bindcancel="onDateCancel"
+  />
+</view> 

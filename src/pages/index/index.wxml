@@ -1,0 +1,47 @@
+<view class="fixed inset-0 bg-gradient-to-b from-black to-[#1a1a1a] flex flex-col">
+  <!-- 顶部菜单 -->
+  <view class="w-full relative" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <view class="flex items-center justify-between px-4" style="height:{{Custom.height}}px;">
+      <view class="text-white text-lg font-medium">黄金记账</view>
+      <view class="flex space-x-4 items-center">
+        <view class="w-6 h-6"><image src="/assets/icons/search.png" class="w-full h-full" /></view>
+        <view class="w-6 h-6"><image src="/assets/icons/more.png" class="w-full h-full" /></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 价格展示区域 -->
+  <view class="flex-1 flex flex-col px-4">
+    <!-- 黄金价格 -->
+    <view class="flex flex-col items-center pt-8 pb-6">
+      <text class="text-yellow-400 text-sm mb-3">黄金价格</text>
+      <view class="flex items-end relative">
+        <text class="text-yellow-400 text-5xl font-bold leading-none">{{goldPrice}}</text>
+        <text class="text-yellow-400 text-sm absolute bottom-0 right-0 translate-x-2">¥</text>
+      </view>
+    </view>
+
+    <!-- 时间范围选择 -->
+    <view class="flex justify-center space-x-3 mb-6">
+      <view 
+        wx:for="{{timeRanges}}" 
+        wx:key="value"
+        class="px-5 py-1.5 rounded-full text-sm transition-all duration-300 {{selectedRange === item.value ? 'bg-yellow-400 text-black shadow-lg shadow-yellow-400/30' : 'bg-[#2a2a2a] text-white'}}"
+        bind:tap="onRangeSelect"
+        data-range="{{item.value}}"
+      >{{item.label}}</view>
+    </view>
+
+    <!-- 价格趋势图 -->
+    <view class="flex-1 flex flex-col justify-end pb-[140rpx]">
+      <view class="h-[600rpx]">
+        <ec-canvas 
+          id="gold-trend-chart" 
+          canvas-id="gold-trend-chart"
+          ec="{{ ec }}"
+        ></ec-canvas>
+      </view>
+    </view>
+  </view>
+</view>
+

@@ -1,0 +1,111 @@
+<view class="container bg-black min-h-screen text-white">
+  <!-- 用户信息 -->
+  <view class="user-info p-4">
+    <view class="flex items-center">
+      <image 
+        src="{{userInfo.avatar || '/assets/images/default-avatar.png'}}" 
+        class="w-16 h-16 rounded-full bg-gray-800"
+      />
+      <view class="ml-4">
+        <view class="text-lg">{{userInfo.nickname || '攒金1777818号'}}</view>
+        <view class="text-sm text-gray-400 mt-1">普通会员</view>
+      </view>
+      <view class="ml-auto">
+        <t-tag theme="warning" variant="light">订阅会员</t-tag>
+      </view>
+    </view>
+  </view>
+
+  <!-- 统计信息 -->
+  <view class="stats p-4 bg-gray-900">
+    <view class="grid grid-cols-3 gap-4">
+      <view class="text-center">
+        <view class="text-yellow-400">攒金总天数</view>
+        <view class="text-xl mt-2">{{stats.totalDays || 0}}天</view>
+      </view>
+      <view class="text-center">
+        <view class="text-yellow-400">攒金总克数</view>
+        <view class="text-xl mt-2">{{stats.totalGold || '0.00'}}克</view>
+      </view>
+      <view class="text-center">
+        <view class="text-yellow-400">记账总天数</view>
+        <view class="text-xl mt-2">{{stats.totalLedgerDays || 0}}天</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 功能列表 -->
+  <view class="menu-list mt-4">
+    <t-cell-group>
+      <t-cell
+        title="客服"
+        leftIcon="service"
+        hover
+        arrow
+        bindtap="onService"
+      />
+      <t-cell
+        title="金价预警"
+        leftIcon="notification"
+        hover
+        arrow
+        bindtap="onPriceAlert"
+      />
+      <t-cell
+        title="密码锁"
+        leftIcon="lock"
+        hover
+        arrow
+        bindtap="onPasswordLock"
+      />
+    </t-cell-group>
+
+    <t-cell-group class="mt-4">
+      <t-cell
+        title="回收站"
+        leftIcon="delete"
+        hover
+        arrow
+        bindtap="onRecycleBin"
+      />
+      <t-cell
+        title="导入数据"
+        leftIcon="upload"
+        hover
+        arrow
+        bindtap="onImportData"
+      />
+      <t-cell
+        title="导出数据"
+        leftIcon="download"
+        hover
+        arrow
+        bindtap="onExportData"
+      />
+    </t-cell-group>
+
+    <t-cell-group class="mt-4">
+      <t-cell
+        title="攒金设置"
+        leftIcon="setting"
+        hover
+        arrow
+        url="/pages/settings/gold"
+      />
+      <t-cell
+        title="记账设置"
+        leftIcon="setting"
+        hover
+        arrow
+        url="/pages/settings/ledger"
+      />
+      <t-cell
+        title="通用设置"
+        leftIcon="setting"
+        hover
+        arrow
+        url="/pages/settings/general"
+      />
+    </t-cell-group>
+  </view>
+</view> 

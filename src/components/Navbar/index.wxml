@@ -1,0 +1,23 @@
+<view class="nav-bar {{transparent ? 'bg-transparent' : 'bg-[#1a1a1a]'}}" style="padding-top: {{statusBarHeight}}px;">
+  <view class="nav-content" style="height: {{navBarHeight}}px;">
+    <block wx:if="{{!showSearch}}">
+      <view class="title-container">
+        <text class="title">{{title}}</text>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="search-container">
+        <view class="search-box">
+          <image src="/assets/icons/search.png" class="w-4 h-4" />
+          <input 
+            type="text" 
+            placeholder="搜索" 
+            placeholder-class="placeholder"
+            bindinput="onSearch"
+            class="search-input"
+          />
+        </view>
+      </view>
+    </block>
+  </view>
+</view> 

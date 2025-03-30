@@ -1,0 +1,80 @@
+<view class="container bg-black min-h-screen text-white">
+  <!-- 月份选择器 -->
+  <view class="p-4 flex justify-between items-center">
+    <view class="text-xl">2025年3月</view>
+    <t-icon name="calendar" size="48rpx" bind:tap="showDatePicker" />
+  </view>
+
+  <!-- 月度统计 -->
+  <view class="p-4 bg-gray-900">
+    <view class="grid grid-cols-3 gap-4">
+      <view class="text-center">
+        <view class="text-gray-400">本月支出</view>
+        <view class="text-xl mt-2">¥{{monthlyExpense}}</view>
+      </view>
+      <view class="text-center">
+        <view class="text-gray-400">本月收入</view>
+        <view class="text-xl mt-2">¥{{monthlyIncome}}</view>
+      </view>
+      <view class="text-center">
+        <view class="text-gray-400">本月结余</view>
+        <view class="text-xl mt-2">¥{{monthlyBalance}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 快捷记账 -->
+  <view class="p-4">
+    <view class="grid grid-cols-5 gap-4">
+      <view wx:for="{{categories}}" wx:key="id" class="text-center" bindtap="onQuickAdd" data-category="{{item.id}}">
+        <view class="w-12 h-12 rounded-full bg-gray-800 mx-auto flex items-center justify-center">
+          <t-icon name="{{item.icon}}" size="48rpx" />
+        </view>
+        <view class="text-sm mt-2">{{item.name}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 账单列表 -->
+  <view class="flex-1 p-4">
+    <block wx:if="{{bills.length > 0}}">
+      <view wx:for="{{bills}}" wx:key="id" class="mb-4">
+        <!-- 日期分组 -->
+        <view class="text-sm text-gray-400 mb-2">{{item.date}}</view>
+        <!-- 账单项 -->
+        <view wx:for="{{item.items}}" wx:key="id" wx:for-item="bill" 
+          class="flex items-center bg-gray-900 p-4 rounded-lg mb-2">
+          <view class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center">
+            <t-icon name="{{bill.icon}}" size="40rpx" />
+          </view>
+          <view class="flex-1 ml-4">
+            <view class="text-base">{{bill.category}}</view>
+            <view class="text-sm text-gray-400">{{bill.time}}</view>
+          </view>
+          <view class="text-lg {{bill.type === 'expense' ? 'text-red-400' : 'text-green-400'}}">
+            {{bill.type === 'expense' ? '-' : '+'}}¥{{bill.amount}}
+          </view>
+        </view>
+      </view>
+    </block>
+    <view wx:else class="text-center text-gray-400 mt-8">
+      <view class="text-6xl mb-4">📝</view>
+      <view>当前月份暂无记账</view>
+      <view class="mt-4">
+        <t-button theme="primary" size="large" class="bg-yellow-400" bindtap="onQuickAdd">
+          记一笔
+        </t-button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 月份选择器弹窗 -->
+  <t-date-picker
+    visible="{{dateVisible}}"
+    mode="month"
+    value="{{currentDate}}"
+    title="选择月份"
+    bindconfirm="onDateConfirm"
+    bindcancel="onDateCancel"
+  />
+</view> 
